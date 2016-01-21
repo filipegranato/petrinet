@@ -83,6 +83,7 @@ class PlaceMarking implements PlaceMarkingInterface
     public function removeToken(TokenInterface $token)
     {
         $this->tokens->removeElement($token);
+        $this->tokens = new ArrayCollection($this->tokens->getValues());
     }
 
     /**
@@ -90,7 +91,7 @@ class PlaceMarking implements PlaceMarkingInterface
      */
     public function setTokens($tokens)
     {
-        $this->tokens = new ArrayCollection();
+        //$this->tokens = new ArrayCollection();
 
         foreach ($tokens as $token) {
             $this->addToken($token);
