@@ -60,7 +60,7 @@ class GraphvizDumper implements DumperInterface
                 '"%s" -> "%s" [label="%s"]',
                 $this->getArcSourceId($arc),
                 $this->getArcTargetId($arc),
-                $arc->getWeight()
+                (null!==$arc->getDescription() ? $arc->getDescription() : $arc->getWeight())
             );
             $graph .= "\n";
         }

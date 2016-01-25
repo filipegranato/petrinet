@@ -22,7 +22,7 @@ use Petrinet\Service\Exception\TransitionNotEnabledException;
  *
  * @author Florian Voutzinos <florian@voutzinos.com>
  */
-class TransitionService implements TransitionServiceInterface
+class ConditionalTransitionService implements TransitionServiceInterface
 {
     /**
      * The factory.
@@ -44,9 +44,44 @@ class TransitionService implements TransitionServiceInterface
     /**
      * {@inheritdoc}
      */
+/*    public function isEnabled(TransitionInterface $transition, MarkingInterface $marking)
+    {
+        $inputArcs = $transition->getInputArcs();
+
+        if (empty($inputArcs)) {
+            return false;
+        }
+
+        foreach ($inputArcs as $inputArc) {
+            $flag = true;
+            $place = $inputArc->getPlace();
+            $placeMarking = $marking->getPlaceMarking($place);
+
+            if (null === $placeMarking) {
+                $flag &= false;
+            }
+
+            if (count($placeMarking->getTokens()) < $inputArc->getWeight()) {
+                $flag &= false;
+            }
+
+            $flag &= $inputArc->assert();
+
+            if($flag)
+                return true;
+        }
+
+        return true;
+    }*/
+
+    /**
+     * {@inheritdoc}
+     */
     public function isEnabled(TransitionInterface $transition, MarkingInterface $marking)
     {
         $inputArcs = $transition->getInputArcs();
+
+        $outputArcs = $transition->getOutputArcs();
 
         if (empty($inputArcs)) {
             return false;
@@ -64,6 +99,14 @@ class TransitionService implements TransitionServiceInterface
                 return false;
             }
         }
+        $flag = true;
+        foreach ($outputArcs as $outputArc) {
+            if($outputArc->assert()==false)
+            {
+                $flag = false;
+            }
+        }
+
 
         return true;
     }
@@ -81,10 +124,12 @@ class TransitionService implements TransitionServiceInterface
         $outputArcs = $transition->getOutputArcs();
 
         // Remove tokens from the input places
+        // ddd($inputArcs);
         foreach ($inputArcs as $arc) {
             $arcWeight = $arc->getWeight();
             $place = $arc->getPlace();
             $placeMarking = $marking->getPlaceMarking($place);
+
             $tokens = $placeMarking->getTokens();
 
             for ($i = 0; $i < $arcWeight; $i++) {
@@ -94,23 +139,26 @@ class TransitionService implements TransitionServiceInterface
 
         // Add tokens to the output places
         foreach ($outputArcs as $arc) {
-            $arcWeight = $arc->getWeight();
-            $place = $arc->getPlace();
-            $placeMarking = $marking->getPlaceMarking($place);
+            if($arc->assert())
+            {
+                $arcWeight = $arc->getWeight();
+                $place = $arc->getPlace();
+                $placeMarking = $marking->getPlaceMarking($place);
 
-            if (null === $placeMarking) {
-                $placeMarking = $this->factory->createPlaceMarking();
-                $placeMarking->setPlace($place);
-                $marking->addPlaceMarking($placeMarking);
+                if (null === $placeMarking) {
+                    $placeMarking = $this->factory->createPlaceMarking();
+                    $placeMarking->setPlace($place);
+                    $marking->addPlaceMarking($placeMarking);
+                }
+
+                // Create the tokens
+                $tokens = array();
+                for ($i = 0; $i < $arcWeight; $i++) {
+                    $tokens[] = $this->factory->createToken();
+                }
+
+                $placeMarking->setTokens($tokens);
             }
-
-            // Create the tokens
-            $tokens = array();
-            for ($i = 0; $i < $arcWeight; $i++) {
-                $tokens[] = $this->factory->createToken();
-            }
-
-            $placeMarking->setTokens($tokens);
         }
     }
 }

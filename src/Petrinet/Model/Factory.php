@@ -43,8 +43,8 @@ class Factory implements FactoryInterface
         $petrinetClass = 'Petrinet\Model\Petrinet',
         $placeClass = 'Petrinet\Model\Place',
         $transitionClass = 'Petrinet\Model\Transition',
-        $inputArcClass = 'Petrinet\Model\InputArc',
-        $outputArcClass = 'Petrinet\Model\OutputArc',
+        $inputArcClass = 'Petrinet\Model\GuardedInputArc',
+        $outputArcClass = 'Petrinet\Model\GuardedOutputArc',
         $placeMarkingClass = 'Petrinet\Model\PlaceMarking',
         $tokenClass = 'Petrinet\Model\Token',
         $markingClass = 'Petrinet\Model\Marking'
