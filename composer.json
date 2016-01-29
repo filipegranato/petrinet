@@ -1,9 +1,9 @@
 {
-    "name": "florianv/petrinet",
+    "name": "filipegranato/petrinet",
     "type": "library",
     "description": "Petrinet framework for PHP 5.3+",
     "keywords": ["petrinet", "workflow"],
-    "homepage": "https://github.com/florianv/petrinet",
+    "homepage": "https://github.com/filipegranato/petrinet",
     "license": "MIT",
     "authors": [
         {
