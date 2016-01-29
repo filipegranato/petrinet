@@ -99,16 +99,19 @@ class ConditionalTransitionService implements TransitionServiceInterface
                 return false;
             }
         }
-        $flag = true;
+        
         foreach ($outputArcs as $outputArc) {
+            $flag = true;
             if($outputArc->assert()==false)
             {
-                $flag = false;
+                $flag &= false;
             }
+            if($flag)
+                return true;
         }
 
 
-        return true;
+        return $flag;
     }
 
     /**

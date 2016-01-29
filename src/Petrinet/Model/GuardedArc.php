@@ -49,7 +49,7 @@ class GuardedArc extends AbstractArc implements GuardInterface
     {
     	$description = '';
     	foreach ($this->guards as $guard) {
-    		$description .= $guard->getDescription();
+    		$description .= " ".$guard->getDescription();
     	}
     	return $description;
     }

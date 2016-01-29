@@ -7,11 +7,10 @@
 
 namespace Petrinet\Model;
 
-use Petrinet\Model\GuardInterface;
 use Closure;
+use Petrinet\Model\GuardInterface;
+
 /**
- * Helps building markings.
- *
  * @author Filipe Granato <filipegranato.1@hotmail.com>
  */
 class Guard implements GuardInterface
@@ -25,6 +24,9 @@ class Guard implements GuardInterface
 		$this->description = $description;
 	}
 
+	/**
+	 * @return boolean	
+	 */
 	public function assert()
 	{
 		return call_user_func($this->condition);
