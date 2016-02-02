@@ -13,7 +13,7 @@ use Petrinet\Model\GuardInterface;
 /**
  * @author Filipe Granato <filipegranato.1@hotmail.com>
  */
-class Guard implements GuardInterface
+class ClosureGuard implements GuardInterface
 {
 	protected $condition;
 	protected $description;
