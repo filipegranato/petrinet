@@ -9,4 +9,8 @@ interface GuardInterface
      * @return bool
      */
     public function assert();
+
+    public function setArc();
+
+    public function removeArc();
 }
