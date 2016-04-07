@@ -37,10 +37,12 @@ class GuardedArc extends AbstractArc implements GuardInterface
 	public function addGuard(GuardInterface $guard)
 	{
 		$this->guards[] = $guard;
+		$guard->setArc($this);
 	}
 
     public function removeGuard(GuardInterface $guard)
     {
+    	$guard->removeArc($this);
         $this->guards->removeElement($guard);
         $this->guards = new ArrayCollection($this->guards->getValues());
     }

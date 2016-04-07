@@ -41,38 +41,6 @@ class ConditionalTransitionService implements TransitionServiceInterface
         $this->factory = $factory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-/*    public function isEnabled(TransitionInterface $transition, MarkingInterface $marking)
-    {
-        $inputArcs = $transition->getInputArcs();
-
-        if (empty($inputArcs)) {
-            return false;
-        }
-
-        foreach ($inputArcs as $inputArc) {
-            $flag = true;
-            $place = $inputArc->getPlace();
-            $placeMarking = $marking->getPlaceMarking($place);
-
-            if (null === $placeMarking) {
-                $flag &= false;
-            }
-
-            if (count($placeMarking->getTokens()) < $inputArc->getWeight()) {
-                $flag &= false;
-            }
-
-            $flag &= $inputArc->assert();
-
-            if($flag)
-                return true;
-        }
-
-        return true;
-    }*/
 
     /**
      * {@inheritdoc}
