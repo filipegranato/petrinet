@@ -17,7 +17,7 @@ class ClosureGuard implements GuardInterface
 {
 	protected $condition;
 	protected $description;
-
+	protected $arc;
 	public function __construct(Closure $condition,$description = null)
 	{
 		$this->condition = $condition;
@@ -49,4 +49,25 @@ class ClosureGuard implements GuardInterface
 	}
 	
 
+	/**
+	 * @return string
+	 */
+	public function getArc()
+	{
+	    return $this->arc;
+	}
+	
+	/**
+	 * @param string $arc
+	 */
+	public function setArc($arc)
+	{
+	    $this->arc = $arc;
+	}
+
+	public function removeArc()
+	{
+		$this->arc = null;
+	}
+	
 }
