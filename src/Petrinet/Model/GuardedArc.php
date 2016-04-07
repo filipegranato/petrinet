@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @author Filipe Granato <filipegranato.1@hotmail.com>
  */
-class GuardedArc extends AbstractArc implements GuardInterface
+class GuardedArc extends AbstractArc
 {
 	protected $guards;
 
