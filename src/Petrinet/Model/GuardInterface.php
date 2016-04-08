@@ -10,7 +10,7 @@ interface GuardInterface
      */
     public function assert($marking);
 
-    public function setArc();
+    public function setArc($arc);
 
     public function removeArc();
 }
