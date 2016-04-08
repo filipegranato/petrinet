@@ -22,13 +22,13 @@ class GuardedArc extends AbstractArc
 		$this->guards = new ArrayCollection();
 	}
 
-	public function assert()
+	public function assert($marking = null)
 	{
 		$flag = true;
 		
 		foreach($this->guards as $guard)
 		{
-			$flag &= $guard->assert();
+			$flag &= $guard->assert($marking);
 		}
 
 		return $flag;

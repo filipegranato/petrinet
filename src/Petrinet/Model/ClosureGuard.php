@@ -27,7 +27,7 @@ class ClosureGuard implements GuardInterface
 	/**
 	 * @return boolean	
 	 */
-	public function assert()
+	public function assert($marking)
 	{
 		return call_user_func($this->condition);
 	}
