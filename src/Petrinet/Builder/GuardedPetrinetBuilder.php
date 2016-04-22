@@ -28,21 +28,21 @@ class GuardedPetrinetBuilder
      *
      * @var PlaceInterface[]
      */
-    private $places = array();
+    protected $places = array();
 
     /**
      * The created transitions.
      *
      * @var TransitionInterface[]
      */
-    private $transitions = array();
+    protected $transitions = array();
 
     /**
      * The factory.
      *
      * @var FactoryInterface
      */
-    private $factory;
+    protected $factory;
 
     /**
      * Creates a new Petrinet builder.

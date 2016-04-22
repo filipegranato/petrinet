@@ -27,14 +27,14 @@ class MarkingBuilder
      *
      * @var \Petrinet\Model\PlaceMarkingInterface[]
      */
-    private $placeMarkings = array();
+    protected $placeMarkings = array();
 
     /**
      * The factory.
      *
      * @var FactoryInterface
      */
-    private $factory;
+    protected $factory;
 
     /**
      * Creates a new marking builder.
